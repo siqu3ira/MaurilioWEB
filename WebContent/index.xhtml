@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head />
+<h:form>
+	<p:panel id="pnlPrimario" header="Verificacao"
+		style="margin-bottom:10px;">
+
+
+		<p:selectBooleanCheckbox value="#{indexMB.condicao1}"
+			itemLabel="Condicao1" />
+		<br />
+		<br />
+		<p:selectBooleanCheckbox value="#{indexMB.condicao2}"
+			itemLabel="Condicao2" />
+		<br />
+		<br />
+		<p:commandButton value="Combinar" action="#{indexMB.combinar()}"
+			update="@form" />
+		<br />
+		<br />
+		<p:outputLabel value="Condicao3: " for="txtCondicao3"
+			style="padding-right: 95px;" />
+		<p:inputText id="txtCondicao3" value="#{indexMB.condicao3}" />
+	</p:panel>
+
+	<p:panel id="pnlPrincipal" header="Dados de Cadastro"
+		style="margin-bottom:10px;">
+
+
+		<p:outputLabel value="Nome: " for="txtNome"
+			style="padding-right: 95px;" />
+		<p:inputText id="txtNome" value="#{indexMB.usuario.nome}" />
+		<br />
+		<br />
+		<p:outputLabel value="Idade: " for="txtIdade"
+			style="padding-right: 95px;" />
+		<p:inputText id="txtIdade" value="#{indexMB.usuario.idade}" />
+		<br />
+		<br />
+		<p:outputLabel value="Telef: " for="txtTelefone"
+			style="padding-right: 105px;" />
+		<p:inputText id="txtTelefone" value="#{indexMB.usuario.telefone}"
+			style="padding-left: 8px;" />
+		<br />
+		<br />
+		<p:outputLabel value="Endereco: " for="txtEndereco"
+			style="padding-right: 65px;" />
+		<p:inputText id="txtEndereco" value="#{indexMB.usuario.endereco}"
+			style="padding-left: 8px;" />
+		<br />
+		<br />
+		<p:outputLabel value="Receita Federal: " for="txtIdReceitaFederal"
+			style="padding-right: 15px;" />
+		<p:inputText id="txtIdReceitaFederal"
+			value="#{indexMB.usuario.idReceitaFederal}"
+			style="padding-left: 8px;" />
+		<br />
+		<br />
+		<p:commandButton value="Validacao de CPF"
+			action="#{indexMB.validarCpf()}" update="pnlPrincipal" />
+			<p:outputLabel value="#{indexMB.mensagemDeValidacao}" id="lblErro" rendered="#{!indexMB.resultado}"/>
+		<br />
+		<br />
+		<p:selectBooleanCheckbox value="#{indexMB.usuario.brasileiro}"
+			itemLabel="Brasileiro" />
+		<br />
+		<br />
+		<div class="card">
+
+			<h5 class="p-mt-0">Basic</h5>
+			<p:selectOneListbox id="basic" value="#{indexMB.usuario.cidadeNatal}">
+				<f:selectItem itemLabel="Anapolis" itemValue="Anapolis" />
+				<f:selectItem itemLabel="Taguatinga" itemValue="Taguatinga" />
+				<f:selectItem itemLabel="Uruana" itemValue="Uruana" />
+				<f:selectItem itemLabel="Aguas Claras" itemValue="Aguas Claras" />
+				<f:selectItem itemLabel="Sao Paulo" itemValue="Sao Paulo" />
+				<f:selectItem itemLabel="Rio de Janeiro" itemValue="Rio de Janeiro" />
+				<f:selectItem itemLabel="Campo do Jordao"
+					itemValue="Campo do Jordao" />
+				<f:selectItem itemLabel="Ilhabela" itemValue="Ilhabela" />
+				<f:selectItem itemLabel="Palmas" itemValue="Palmas" />
+				<f:selectItem itemLabel="Juiz de fora" itemValue="Juiz de fora" />
+			</p:selectOneListbox>
+
+		</div>
+		<br />
+		<br />
+		<p:commandButton value="Cadastrar"
+			action="#{indexMB.cadastrarUsuario()}" update="pnlSaida" disabled="#{!indexMB.resultado}" id="btnCadastrar"/>
+		<p:commandButton value="Excluir Estrangeiros"
+			action="#{indexMB.removerEstrangeiros()}" update="pnlSaida" />
+
+	</p:panel>
+	<p:panel id="pnlSaida" header="Dados do Cliente"
+		visible="#{indexMB.listaUsuarios.size()>0}">
+		<p:dataTable id="TblSaida" value="#{indexMB.listaUsuarios}"
+			var="usuario">
+			<f:facet name="header">
+			Usuarios Cadastrados
+			</f:facet>
+			<p:column headerText="Nome" filterBy="#{usuario.nome}">
+				<h:outputText value="#{usuario.nome}" />
+			</p:column>
+			<p:column headerText="Idade">
+				<h:outputText value="#{usuario.idade}" />
+			</p:column>
+			<p:column headerText="Telefone">
+				<h:outputText value="#{usuario.telefone}" />
+			</p:column>
+			<p:column headerText="Endereco">
+				<h:outputText value="#{usuario.endereco}" />
+			</p:column>
+			<p:column headerText="Receita Federal">
+				<h:outputText value="#{usuario.idReceitaFederal}" />
+			</p:column>
+			<p:column headerText="Brasileiro">
+				<h:outputText value="#{usuario.brasileiro}" />
+			</p:column>
+			<p:column headerText="Cidade Natal">
+				<h:outputText value="#{usuario.cidadeNatal}" />
+			</p:column>
+
+		</p:dataTable>
+
+	</p:panel>
+</h:form>
+</html>
