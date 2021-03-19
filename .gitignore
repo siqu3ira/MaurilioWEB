@@ -1,0 +1,16 @@
+/build/
+/target/
+/.classpath
+/.project
+/.tern-project
+/bin/
+*.jar
+*.aar
+*.zip
+*.class
+/.settings/
+/.repository
+/src/main/java/META-INF/
+/MANIFEST.MF
+/.pmd
+/.tern-project

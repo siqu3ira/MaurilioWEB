@@ -18,14 +18,14 @@ public class UsuarioDAO implements IUsuario{
 
 	@Override
 	public void consultarUsuario(String idReceitaFederal) {
-	
+	//retornar obj usuario
 		
 	}
 
 	@Override
 	public void excluirUsuario(String idReceitaFederal) {
-
-		
+	listaUsuarios.remove(idReceitaFederal);
+		//utilizar iterator
 	}
 
 	@Override

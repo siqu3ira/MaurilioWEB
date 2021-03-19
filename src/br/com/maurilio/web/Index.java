@@ -23,6 +23,8 @@ public class Index {
 	private ValidacaoCpfDAO validarCpfDAO = new ValidacaoCpfDAO();
 	private boolean resultado;
 	private String mensagemDeValidacao;
+	private UsuarioDAO excluirUsuarios = new UsuarioDAO();
+	private UsuarioDAO consultarUsuarios = new UsuarioDAO();
 
 	public void cadastrarUsuario() {
 		System.out.println("Nome da pessoa: " + usuario.getNome());
@@ -41,7 +43,9 @@ public class Index {
 	public void consultarUsuarios() {
 		setListaUsuarios(usuarioDAO.listarUsuarios());
 	}
-
+	public void excluirUsuarios() {
+		
+	}
 	public void combinar() {
 		condicao3 = condicao1 || condicao2;
 	}
@@ -126,6 +130,18 @@ public class Index {
 	}
 	public void setMensagemDeValidacao(String mensagemDeValidacao) {
 		this.mensagemDeValidacao = mensagemDeValidacao;
+	}
+	public UsuarioDAO getExcluirUsuarios() {
+		return excluirUsuarios;
+	}
+	public void setExcluirUsuarios(UsuarioDAO excluirUsuarios) {
+		this.excluirUsuarios = excluirUsuarios;
+	}
+	public UsuarioDAO getConsultarUsuarios() {
+		return consultarUsuarios;
+	}
+	public void setConsultarUsuarios(UsuarioDAO consultarUsuarios) {
+		this.consultarUsuarios = consultarUsuarios;
 	}
 
 }
