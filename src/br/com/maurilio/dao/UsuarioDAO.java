@@ -1,6 +1,7 @@
 package br.com.maurilio.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import br.com.maurilio.web.Usuario;
@@ -17,15 +18,29 @@ public class UsuarioDAO implements IUsuario{
 	}
 
 	@Override
-	public void consultarUsuario(String idReceitaFederal) {
-	//retornar obj usuario
+	public Usuario consultarUsuario(String idReceitaFederal) {
+		Iterator<Usuario> usuarioIterator = listaUsuarios.iterator();
+		while (usuarioIterator.hasNext()) {
+			Usuario usuario = usuarioIterator.next();
+			if (usuario.getIdReceitaFederal().equals(idReceitaFederal)) {
+				return usuario;
+			}
+		}
+		return new Usuario();
 		
 	}
 
 	@Override
 	public void excluirUsuario(String idReceitaFederal) {
-	listaUsuarios.remove(idReceitaFederal);
-		//utilizar iterator
+		Iterator<Usuario> usuarioIterator = listaUsuarios.iterator();
+		while (usuarioIterator.hasNext()) {
+			Usuario usuario = usuarioIterator.next();
+			if (usuario.getIdReceitaFederal().equals(idReceitaFederal)) {
+				usuarioIterator.remove();
+				System.out.println("Removendo usuario: " + usuario.getNome());
+			}
+		}
+		
 	}
 
 	@Override
